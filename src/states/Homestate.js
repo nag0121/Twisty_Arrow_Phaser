@@ -4,7 +4,7 @@ export default class Home_state extends Phaser.State {
 
         this.home_state = this.add.sprite(0, 0, "home_screen");
         //this.home_state.inputEnabled = true;
-        this.home_state_play = this.add.sprite(this.world.centerX, this.world.centerY - 40, "play_game");
+        this.home_state_play = this.add.sprite(this.world.centerX + 10, this.world.centerY - 40, "play_game");
         this.home_state_play.anchor.set(0.5, 0.5);
         this.home_state_play.inputEnabled = true;
 
