@@ -13,8 +13,9 @@ export default class Levels_State extends Phaser.State {
 
             this.levelText = this.add.text(directions.x[i], directions.y[i], i+1, {
                 fill: '#ffffff',
-                align: 'center',
+                align: 'center'
             });
+
             this.levelText.anchor.set(0.5);
 
             this.level.inputEnabled = true;

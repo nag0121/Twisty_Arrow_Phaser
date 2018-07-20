@@ -21,9 +21,9 @@ class CreateState extends Phaser.State {
 
         this.arrowGroup = this.add.group(); //arrow group that rotates with target
 
-        this.bow = this.add.sprite(this.world.centerX, this.game.height - 60, 'bow'); //bow
+        this.bow = this.add.sprite(this.world.centerX, this.game.height - 40, 'bow'); //bow
         this.bow.anchor.set(0.5);
-        this.bow.scale.set(0.35);
+        this.bow.scale.set(0.2);
         this.bow.angle = 135;
 
         this.bow.inputEnabled = true; //input enabled for bow

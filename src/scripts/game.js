@@ -6,7 +6,7 @@ import Levels_State from '../states/levelsState.js';
 
 export default class Game extends Phaser.Game {
     constructor() {
-        super(500, 800, Phaser.AUTO);
+        super(window.innerWidth, window.innerHeight, Phaser.AUTO);
 
         this.state.add('loadstate', LoadState, false);
         this.state.add('createstate', CreateState, false);
