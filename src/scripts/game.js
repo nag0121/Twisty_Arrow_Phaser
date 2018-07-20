@@ -6,13 +6,13 @@ import Levels_State from '../states/levelsState.js';
 
 export default class Game extends Phaser.Game {
     constructor() {
-        super(500, 800, Phaser.AUTO);
+        super(400, 580, Phaser.AUTO);
 
         this.state.add('loadstate', LoadState, false);
         this.state.add('createstate', CreateState, false);
         this.state.add('Home_state', Home_state, false);
         this.state.add('levelsstate', Levels_State, false);
-        
+
         this.state.start('loadstate');
     }
 }
