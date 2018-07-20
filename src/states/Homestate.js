@@ -16,7 +16,7 @@ export default class Home_state extends Phaser.State {
         this.gameUnMuteBtn.visible = false;
 
         this.home_state_play.events.onInputDown.add(() => {
-            this.state.start("createstate");
+            this.state.start("levelsstate");
         });
 
         // Playing Background Music
