@@ -8,10 +8,10 @@ export default class Home_state extends Phaser.State {
         this.home_state_play.anchor.set(0.5, 0.5);
         this.home_state_play.inputEnabled = true;
 
-        this.gameMuteBtn = this.add.button(360, 50, 'mute_sound', this.gameMuteFunction, this);
+        this.gameMuteBtn = this.add.button(this.game.width - 30, 30, 'mute_sound', this.gameMuteFunction, this);
         this.gameMuteBtn.anchor.set(0.5, 0.5);
         //this.gameMuteBtn.visible = true;
-        this.gameUnMuteBtn = this.add.button(360, 50, 'unmute_sound', this.gameMuteFunction, this);
+        this.gameUnMuteBtn = this.add.button(this.game.width - 30, 30, 'unmute_sound', this.gameMuteFunction, this);
         this.gameUnMuteBtn.anchor.set(0.5, 0.5);
         this.gameUnMuteBtn.visible = false;
 
