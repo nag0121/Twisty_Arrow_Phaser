@@ -9,7 +9,8 @@ class LoadState extends Phaser.State {
     preload() {
         //loading assets
         this.load.image('target', 'assets/images/target.png');
-        this.load.image('circle', 'assets/images/Black_Circle1.png');
+        // this.load.image('circle', 'assets/images/Black_Circle1.png');
+        this.load.image('circle', 'assets/images/circle_levels.png');
         this.load.image('arrow', 'assets/images/arrow_bow.png');
         this.load.image('bow', 'assets/images/bow.png');
         this.load.image('bg','assets/images/sky.png')
