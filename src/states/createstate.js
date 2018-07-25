@@ -75,13 +75,8 @@ class CreateState extends Phaser.State {
         this.target.angle += gameOptions.rotationSpeed;
 
         var children = this.arrowGroup.getAll();
-<<<<<<< HEAD
         this.score.text = gameOptions.numArrow;
 
-=======
-        this.score.text = children.length;
-        
->>>>>>> 61faa294971bc22bd98160603c1bcbd33445c1b9
         for (var i = 0; i < children.length; i++) {
 
             // rotating the knife
