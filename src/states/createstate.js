@@ -177,7 +177,7 @@ class CreateState extends Phaser.State {
         this.home.alignIn(this.popup, Phaser.BOTTOM_CENTER);
         this.home.inputEnabled = true;
         this.home.events.onInputDown.add(()=>{
-            this.state.start('Home_state');
+            this.state.start('HomeState');
             gameOptions.rotationSpeed = 2;
         },this);
  
