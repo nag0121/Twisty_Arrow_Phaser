@@ -75,8 +75,13 @@ class CreateState extends Phaser.State {
         this.target.angle += gameOptions.rotationSpeed;
 
         var children = this.arrowGroup.getAll();
+<<<<<<< HEAD
         this.score.text = gameOptions.numArrow;
 
+=======
+        this.score.text = children.length;
+        
+>>>>>>> 61faa294971bc22bd98160603c1bcbd33445c1b9
         for (var i = 0; i < children.length; i++) {
 
             // rotating the knife
@@ -184,12 +189,12 @@ class CreateState extends Phaser.State {
             gameOptions.rotationSpeed = 2;
             gameOptions.numArrow = 10;
         },this);
-        
+
         this.home = this.add.sprite(this.world.centerX, this.world.centerY, 'home');    
         this.home.alignIn(this.popup, Phaser.BOTTOM_CENTER);
         this.home.inputEnabled = true;
         this.home.events.onInputDown.add(()=>{
-            this.state.start('Home_state');
+            this.state.start('HomeState');
             gameOptions.rotationSpeed = 2;
         },this);
  
