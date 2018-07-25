@@ -1,5 +1,6 @@
 var canShoot = true;
 var arrow;
+var popop = "out";
 var gameOptions = {
 
     // target rotation speed, in degrees per frame
@@ -17,7 +18,7 @@ class CreateState extends Phaser.State {
 
         this.physics.startSystem(Phaser.Physics.Arcade); //enabling arcade physics for the game
 
-        this.stage.backgroundColor = '#ffffff'; //game background color
+        this.stage.backgroundColor = '#576987'; //game background color
 
         this.arrowGroup = this.add.group(); //arrow group that rotates with target
 
@@ -35,24 +36,31 @@ class CreateState extends Phaser.State {
 
 
 
-        this.arrow = this.add.sprite(this.world.centerX, this.game.height - 130, 'arrow');
+        this.arrow = this.add.sprite(this.world.centerX, this.game.height - 120, 'arrow');
         this.arrow.anchor.set(0.5, 0);
         // this.arrow.scale.set(0.7);
 
-        this.target = this.add.sprite(this.world.centerX, this.game.height - 600, 'target');
+        this.target = this.add.sprite(this.world.centerX, this.game.height/4, 'target');
         this.target.anchor.set(0.5);
-        this.target.scale.set(0.6);
+        this.target.scale.set(0.38);
 
+        
+        
         this.physics.enable([this.target, this.arrow], Phaser.Physics.ARCADE);
 
         this.arrow.body.collideWorldBounds = true;
 
+        this.score = this.add.text(10, 10, null, {
+            fill:"#000000"
+        })
     }
     update() {
+
+              
         this.target.angle += gameOptions.rotationSpeed;
 
         var children = this.arrowGroup.getAll();
-
+        this.score.text = children.length;
 
         for (var i = 0; i < children.length; i++) {
 
@@ -105,13 +113,16 @@ class CreateState extends Phaser.State {
             this.arrowGroup.add(arrow);
 
             // bringing back the knife to its starting position
-            this.arrow.y = this.game.height - 60;
+            this.arrow.y = this.game.height - 120;
         } else {
             this.Losttween = this.add.tween(this.arrow);
             this.Losttween.to({ x: this.world.centerX + 260, y: this.game.height - 60 }, 500);
             this.Losttween.start();
             this.Losttween.onComplete.add(() => {
-                this.state.restart();
+                this.bow.inputEnabled = false;
+                this.arrow.kill();
+                this.showPopUp();
+                // this.state.restart();
                 canShoot = true;
             }, this);
 
@@ -127,14 +138,44 @@ class CreateState extends Phaser.State {
             canShoot = false;
 
             this.twee = this.add.tween(this.arrow);
-            this.twee.to({ y: this.target.y + this.target.width / 2 }, gameOptions.throwSpeed);
+            this.twee.to({ y: this.target.y + this.target.width/2 }, gameOptions.throwSpeed);
             this.twee.start();
 
             this.twee.onComplete.add(this.collisionHandler, this);
         }
 
     }
+    showPopUp() {
+        this.popup = this.add.sprite(this.world.centerX, this.world.centerY, 'popup');
+        this.popup.anchor.set(0.5);
+        this.popupText = this.add.text(this.world.centerX, this.world.centerY, popop, {
+            fill: "#000000",
+        } );
+        this.popupText.anchor.set(0.5);
 
+        this.popupText.alignIn(this.popup, Phaser.TOP_CENTER);
+
+        this.popupText.inputEnabled = true;
+        gameOptions.rotationSpeed = 0;
+
+        
+        this.replay = this.add.sprite(this.world.centerX, this.world.centerY, 'replay');
+        this.replay.alignIn(this.popup, Phaser.CENTER);
+        this.replay.inputEnabled = true;
+        this.replay.events.onInputDown.add(()=>{
+            this.state.restart();
+            gameOptions.rotationSpeed = 2;
+        },this);
+        
+        this.home = this.add.sprite(this.world.centerX, this.world.centerY, 'home');    
+        this.home.alignIn(this.popup, Phaser.BOTTOM_CENTER);
+        this.home.inputEnabled = true;
+        this.home.events.onInputDown.add(()=>{
+            this.state.start('Home_state');
+            gameOptions.rotationSpeed = 2;
+        },this);
+ 
+    }
 
 }
 

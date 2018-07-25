@@ -18,6 +18,9 @@ class LoadState extends Phaser.State {
         this.load.image('mute_sound', 'assets/images/Screens1/mute_test.png');
         this.load.image('unmute_sound', 'assets/images/Screens1/unmute_test.png');
         this.load.image('twisty_name', 'assets/images/Screens1/twisty_name.png');
+        this.load.image('popup', 'assets/images/popup.png');
+        this.load.image('home', 'assets/images/home-outline.png');
+        this.load.image('replay', 'assets/images/replay.png');
 
         //loading sounds
 
