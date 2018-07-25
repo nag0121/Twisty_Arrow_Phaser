@@ -18,21 +18,25 @@ class CreateState extends Phaser.State {
 
         this.physics.startSystem(Phaser.Physics.Arcade); //enabling arcade physics for the game
 
-        this.stage.backgroundColor = '#576987'; //game background color
+        // this.stage.backgroundColor = '#576987';
+        this.bg = this.add.image(0,0,'bg'); //game background color
+        this.bg.width = this.game.width;
+        this.bg.height = this.game.height;
 
         this.arrowGroup = this.add.group(); //arrow group that rotates with target
 
         this.bow = this.add.sprite(this.world.centerX, this.game.height - 40, 'bow'); //bow
         this.bow.anchor.set(0.5);
-        this.bow.scale.set(0.2);
-        this.bow.angle = 135;
+        this.bow.angle = 45;
 
         this.bow.inputEnabled = true; //input enabled for bow
         this.bow.input.pixelPerfectClick = true; //
         // window.addEventListener("click",()=>{
         //     this.arrowThrow();
         // },true);
-        this.bow.events.onInputDown.add(this.arrowThrow, this);
+        this.bg.inputEnabled = true;
+        this.bg.events.onInputDown.add(this.arrowThrow, this);
+        // this.bow.events.onInputDown.add(this.arrowThrow, this);
 
 
 
@@ -42,7 +46,7 @@ class CreateState extends Phaser.State {
 
         this.target = this.add.sprite(this.world.centerX, this.game.height/4, 'target');
         this.target.anchor.set(0.5);
-        this.target.scale.set(0.38);
+        this.target.scale.set(0.4);
 
         
         
@@ -50,9 +54,11 @@ class CreateState extends Phaser.State {
 
         this.arrow.body.collideWorldBounds = true;
 
-        this.score = this.add.text(10, 10, null, {
-            fill:"#000000"
+        this.score = this.add.text(0, 0, null, {
+            fill:"#FFFFFF"
         })
+        this.score.anchor.set(0.5);
+        this.score.alignIn(this.target,Phaser.CENTER);
     }
     update() {
 
@@ -70,9 +76,9 @@ class CreateState extends Phaser.State {
             // turning knife angle in radians
             var radians = this.math.degToRad(children[i].angle + 90);
             // trigonometry to make the knife rotate around target center
-            children[i].x = this.target.x + (this.target.width) * Math.cos(radians);
+            children[i].x = this.target.x + (this.target.width - 15) * Math.cos(radians);
 
-            children[i].y = this.target.y + (this.target.width) * Math.sin(radians);
+            children[i].y = this.target.y + (this.target.width - 15) * Math.sin(radians);
 
         }
     }
