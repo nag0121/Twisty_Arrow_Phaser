@@ -10,7 +10,9 @@ var gameOptions = {
     throwSpeed: 150,
 
     // minimum angle between two knives
-    minAngle: 7
+    minAngle: 7,
+
+    numArrow:10
 }
 class CreateState extends Phaser.State {
 
@@ -25,7 +27,7 @@ class CreateState extends Phaser.State {
 
         this.arrowGroup = this.add.group(); //arrow group that rotates with target
 
-        this.bow = this.add.sprite(this.world.centerX, this.game.height - 40, 'bow'); //bow
+        this.bow = this.add.sprite(this.world.centerX, this.game.height - 60, 'bow'); //bow
         this.bow.anchor.set(0.5);
         this.bow.angle = 45;
 
@@ -40,9 +42,12 @@ class CreateState extends Phaser.State {
 
 
 
-        this.arrow = this.add.sprite(this.world.centerX, this.game.height - 120, 'arrow');
+        this.arrow = this.add.sprite(this.world.centerX, this.game.height - 160, 'arrow');
         this.arrow.anchor.set(0.5, 0);
         // this.arrow.scale.set(0.7);
+
+        this.arrow_next = this.add.sprite(this.world.centerX, this.game.height-30, 'arrow');
+        this.arrow_next.anchor.set(0.5, 0);
 
         this.target = this.add.sprite(this.world.centerX, this.game.height/4, 'target');
         this.target.anchor.set(0.5);
@@ -63,10 +68,14 @@ class CreateState extends Phaser.State {
     update() {
 
               
+        if(gameOptions.numArrow == 0){
+            popop = "Level 2";
+            this.showPopUp('next_level')
+        }
         this.target.angle += gameOptions.rotationSpeed;
 
         var children = this.arrowGroup.getAll();
-        this.score.text = children.length;
+        this.score.text = gameOptions.numArrow;
 
         for (var i = 0; i < children.length; i++) {
 
@@ -79,6 +88,7 @@ class CreateState extends Phaser.State {
             children[i].x = this.target.x + (this.target.width - 15) * Math.cos(radians);
 
             children[i].y = this.target.y + (this.target.width - 15) * Math.sin(radians);
+            // gameOptions.numArrow--;
 
         }
     }
@@ -105,7 +115,7 @@ class CreateState extends Phaser.State {
             }
         }
         if (this.validThrough) {
-
+            gameOptions.numArrow--;
             // player can now throw again
             canShoot = true;
 
@@ -119,7 +129,8 @@ class CreateState extends Phaser.State {
             this.arrowGroup.add(arrow);
 
             // bringing back the knife to its starting position
-            this.arrow.y = this.game.height - 120;
+            this.arrow.y = this.game.height - 160;
+
         } else {
             this.Losttween = this.add.tween(this.arrow);
             this.Losttween.to({ x: this.world.centerX + 260, y: this.game.height - 60 }, 500);
@@ -127,7 +138,7 @@ class CreateState extends Phaser.State {
             this.Losttween.onComplete.add(() => {
                 this.bow.inputEnabled = false;
                 this.arrow.kill();
-                this.showPopUp();
+                this.showPopUp('replay');
                 // this.state.restart();
                 canShoot = true;
             }, this);
@@ -151,7 +162,7 @@ class CreateState extends Phaser.State {
         }
 
     }
-    showPopUp() {
+    showPopUp(replay_next) {
         this.popup = this.add.sprite(this.world.centerX, this.world.centerY, 'popup');
         this.popup.anchor.set(0.5);
         this.popupText = this.add.text(this.world.centerX, this.world.centerY, popop, {
@@ -165,12 +176,13 @@ class CreateState extends Phaser.State {
         gameOptions.rotationSpeed = 0;
 
         
-        this.replay = this.add.sprite(this.world.centerX, this.world.centerY, 'replay');
+        this.replay = this.add.sprite(this.world.centerX, this.world.centerY, replay_next);
         this.replay.alignIn(this.popup, Phaser.CENTER);
         this.replay.inputEnabled = true;
         this.replay.events.onInputDown.add(()=>{
             this.state.restart();
             gameOptions.rotationSpeed = 2;
+            gameOptions.numArrow = 10;
         },this);
         
         this.home = this.add.sprite(this.world.centerX, this.world.centerY, 'home');    

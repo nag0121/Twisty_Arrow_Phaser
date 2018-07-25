@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 export default class LevelsState extends Phaser.State {
     create () {
-        this.stage.backgroundColor = '#ffffff'; //game background color
-=======
-export default class Levels_State extends Phaser.State {
-    create() {
-        this.stage.backgroundColor = '#070707'; //game background color
->>>>>>> b5843dec1fc1627b0e37e6cd6aea09322f437252
+        this.stage.backgroundColor = '#000'; //game background color
         var directions = {
             x: [40, 110, 180, 250],
             y: [100, 100, 100, 100]

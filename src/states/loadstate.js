@@ -21,6 +21,7 @@ class LoadState extends Phaser.State {
         this.load.image('popup', 'assets/images/popup.png');
         this.load.image('home', 'assets/images/home-outline.png');
         this.load.image('replay', 'assets/images/replay.png');
+        this.load.image('next_level', 'assets/images/next_level.png');
 
         //loading sounds
 
