@@ -3,7 +3,12 @@ import CreateState from '../states/createstate.js';
 import Home_state from '../states/Homestate.js';
 import Levels_State from '../states/levelsState.js';
 
+Phaser.Device.onInitialized.add(function (device) {
 
+    device.canvasBitBltShift = true;
+    device.mspointer = false;
+
+});
 export default class Game extends Phaser.Game {
     constructor() {
         super(window.innerWidth, window.innerHeight, Phaser.AUTO);

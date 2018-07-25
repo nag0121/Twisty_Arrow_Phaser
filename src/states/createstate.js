@@ -61,7 +61,7 @@ class CreateState extends Phaser.State {
 
         var children = this.arrowGroup.getAll();
         this.score.text = children.length;
-
+        
         for (var i = 0; i < children.length; i++) {
 
             // rotating the knife
@@ -166,7 +166,7 @@ class CreateState extends Phaser.State {
             this.state.restart();
             gameOptions.rotationSpeed = 2;
         },this);
-        
+
         this.home = this.add.sprite(this.world.centerX, this.world.centerY, 'home');    
         this.home.alignIn(this.popup, Phaser.BOTTOM_CENTER);
         this.home.inputEnabled = true;
