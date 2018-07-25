@@ -12,7 +12,7 @@ class LoadState extends Phaser.State {
         this.load.image('circle', 'assets/images/Black_Circle1.png');
         this.load.image('arrow', 'assets/images/arrow_bow.png');
         this.load.image('bow', 'assets/images/bow.png');
-        this.load.image('home_screen', 'assets/images/Screens1/twisty_home_screen.png');
+        this.load.image('bg','assets/images/sky.png')
         this.load.image('play_game', 'assets/images/Screens1/play_test.png');
         this.load.image('mute_sound', 'assets/images/Screens1/mute_test.png');
         this.load.image('unmute_sound', 'assets/images/Screens1/unmute_test.png');
@@ -29,7 +29,7 @@ class LoadState extends Phaser.State {
 
     create() {
 
-        this.state.start('Home_state');
+        this.state.start('HomeState');
 
     }
 }

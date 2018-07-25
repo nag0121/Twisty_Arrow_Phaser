@@ -1,4 +1,4 @@
-export default class Levels_State extends Phaser.State {
+export default class LevelsState extends Phaser.State {
     create () {
         this.stage.backgroundColor = '#ffffff'; //game background color
         var directions = {
@@ -24,7 +24,7 @@ export default class Levels_State extends Phaser.State {
 
             this.level.inputEnabled = true;
             this.level.events.onInputDown.add(() => {
-                this.state.start('createstate');
+                this.state.start('CreateState');
             });
 
         }

@@ -1,17 +1,17 @@
-export default class Home_state extends Phaser.State {
+export default class HomeState extends Phaser.State {
 
     create() {
 
-        this.home_state = this.add.sprite(0, 0, "home_screen");
+        // this.home_state = this.add.sprite(0, 0, "home_screen");
         //this.home_state.inputEnabled = true;
         this.home_state_play = this.add.sprite(this.world.centerX, 300, "play_game");
         this.home_state_play.anchor.set(0.5, 0.5);
         this.home_state_play.inputEnabled = true;
 
-        this.gameMuteBtn = this.add.button(this.game.width - 30, 30, 'mute_sound', this.gameMuteFunction, this);
+        this.gameMuteBtn = this.add.button(this.game.width - 60, 30, 'mute_sound', this.gameMuteFunction, this);
         this.gameMuteBtn.anchor.set(0.5, 0.5);
         //this.gameMuteBtn.visible = true;
-        this.gameUnMuteBtn = this.add.button(this.game.width - 30, 30, 'unmute_sound', this.gameMuteFunction, this);
+        this.gameUnMuteBtn = this.add.button(this.game.width - 60, 30, 'unmute_sound', this.gameMuteFunction, this);
         this.gameUnMuteBtn.anchor.set(0.5, 0.5);
         this.gameUnMuteBtn.visible = false;
 
@@ -19,7 +19,7 @@ export default class Home_state extends Phaser.State {
         this.twisty_icon.anchor.set(0.5, 0.5);
 
         this.home_state_play.events.onInputDown.add(() => {
-            this.state.start("levelsstate");
+            this.state.start("LevelsState");
         });
 
         // Playing Background Music
@@ -39,7 +39,7 @@ export default class Home_state extends Phaser.State {
         this.text_play.inputEnabled = true;
 
         this.text_play.events.onInputDown.add(() => {
-            this.state.start("levelsstate");
+            this.state.start("LevelsState");
         });
 
     }
